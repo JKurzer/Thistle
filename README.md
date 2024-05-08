@@ -1,2 +1,3 @@
 # Thistle
  
+This is a separable packaging for our behavior trees which are classically quite difficult to version control. Hopefully, this will allow us to make some fundamental progress on the problem while also keeping development speed high enough. Thistle intends to make use of ActorComponents rather than Pawns for Assumption of Control, allowing far cleaner inheritance and easy inclusion after-the-fact. It may also support async AI, necessary for really taking advantage of async physics and networking. TBD.
