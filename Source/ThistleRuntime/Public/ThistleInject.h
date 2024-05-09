@@ -32,9 +32,10 @@
 * 
 * There are four good solves: 
 *	Have the AI produce slightly longer tasks than usual.
-*	Manage only tasks that must be coherent across all players on the server-side.
+*	Manage only tasks that must be coherent across all players on the server-side, but manage them entirely.
+*		So shoot and similar only happen server side, but pathing is local. 
 *	Grin and bear it, and hope that the fully server defaults are fast enough.
-*	Mad shit. Destiny 2 style.
+*	Mad shit. Destiny 2 style. Server picks targets. Local executes.
 * 
 * It's not clear to me which way to go yet. If we go with 3, this component is just an attachment point for the standard AI controller
 * or a way of consuming commands from it in the case of a squad. This isn't the worst! Actually, it's pretty good!
