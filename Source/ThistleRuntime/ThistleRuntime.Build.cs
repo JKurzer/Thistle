@@ -2,6 +2,7 @@
 using System;
 using System.IO;
 using UnrealBuildTool;
+using UnrealBuildTool.Rules;
 
 public class ThistleRuntime : ModuleRules
 {
@@ -11,7 +12,7 @@ public class ThistleRuntime : ModuleRules
 
 		PublicIncludePaths.AddRange(
 			new string[] {
-				Path.Combine(PluginDirectory,"Source/Thistle")
+				Path.Combine(PluginDirectory,"Source/ThistleRuntime")
 			}
 		);
 
@@ -27,7 +28,7 @@ public class ThistleRuntime : ModuleRules
 			new string[]
 			{
 				"Core",
-				"GameFramework",
+                "AIModule",
 
 				// ... add other public dependencies that you statically link with here ...
 			}
