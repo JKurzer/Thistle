@@ -1,5 +1,6 @@
 // Copyright Epic Games, Inc. All Rights Reserved.
-
+using System;
+using System.IO;
 using UnrealBuildTool;
 
 public class ThistleRuntime : ModuleRules
@@ -7,33 +8,36 @@ public class ThistleRuntime : ModuleRules
 	public ThistleRuntime(ReadOnlyTargetRules Target) : base(Target)
 	{
 		PCHUsage = ModuleRules.PCHUsageMode.UseExplicitOrSharedPCHs;
-		
+
 		PublicIncludePaths.AddRange(
 			new string[] {
-				// ... add public include paths required here ...
+				Path.Combine(PluginDirectory,"Source/Thistle")
 			}
-			);
-				
-		
+		);
+
+
 		PrivateIncludePaths.AddRange(
 			new string[] {
 				// ... add other private include paths required here ...
 			}
 			);
-			
-		
+
+
 		PublicDependencyModuleNames.AddRange(
 			new string[]
 			{
 				"Core",
+				"GameFramework",
+
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
-			
-		
+
+
 		PrivateDependencyModuleNames.AddRange(
 			new string[]
 			{
+				"Core",
 				"CoreUObject",
 				"Engine",
 				"Slate",
@@ -41,8 +45,8 @@ public class ThistleRuntime : ModuleRules
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
-		
-		
+
+
 		DynamicallyLoadedModuleNames.AddRange(
 			new string[]
 			{

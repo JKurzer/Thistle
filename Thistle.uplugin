@@ -4,7 +4,7 @@
 	"VersionName": "1.0",
 	"FriendlyName": "Thistle",
 	"Description": "AI System",
-	"Category": "Game Features",
+	"Category": "Other",
 	"CreatedBy": "Hedra",
 	"CreatedByURL": "",
 	"DocsURL": "",
@@ -23,5 +23,5 @@
 		}
 	],
 	"ExplicitlyLoaded": true,
-	"BuiltInInitialFeatureState": "Installed"
+	"BuiltInInitialFeatureState": "Registered"
 }
