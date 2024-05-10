@@ -22,9 +22,14 @@ void UThistleTestService::TickNode(UBehaviorTreeComponent& OwnerComp, uint8* Nod
 {
 	Super::TickNode(OwnerComp, NodeMemory, DeltaSeconds);
 
-	// Character and controller
-	AAIController* MyAIController = OwnerComp.GetAIOwner();
-	ACharacter* MyCharacter = Cast<ACharacter>(MyAIController->GetPawn());
+	//The normal idiom for getting character and controller looks like this:
+	//AAIController* MyAIController = OwnerComp.GetAIOwner();
+	//ACharacter* MyCharacter = Cast<ACharacter>(MyAIController->GetPawn());
+	//where as we may want to allow thistle to decide who owns what and why
+
+	//I suspect we'll end up with 3-4 of these services and a sort of... template for our behavior trees. Not sure yet.
+	//ultimately, though, this means that it looks like we can avoid getting locked into needing a pawn class per behavior tree
+
 }
 
 void UThistleTestService::OnSearchStart(FBehaviorTreeSearchData& SearchData)
