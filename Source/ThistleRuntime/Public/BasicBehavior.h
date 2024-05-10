@@ -8,10 +8,10 @@
 
 /**
  * https://dev.epicgames.com/documentation/en-us/unreal-engine/API/Runtime/AIModule/BehaviorTree/UBehaviorTree
- * Right now, we're looking at UBehaviorTree, but it's VERY striking that there appears to be a near identical FBehaviorTreeInstance
- * This class looks to be the underlying executor of any given specific BT subtree, meaning that under the hood, this isn't exactly blueprint
- * which was likely necessary for performance reasons or historical reasons. 
- * A lot of blueprint is actually implemented this way, as thin shims over C++ systems,  and it's one reason why blueprint's actually
+ * Right now, we're looking at UBehaviorTree, but FBehaviorTreeInstance looks to be the underlying executor of 
+ * any given specific BT subtree, meaning that under the hood, this isn't exactly blueprint
+ * which was likely necessary for performance reasons or historical reasons. A lot of blueprint is 
+ * actually implemented this way, as thin shims over C++ systems. It's one reason why blueprint's
  * quite performant for some tasks but not others. 
  *	
  *	It does look like you can programmatically load blueprints IF you have an instance.
