@@ -4,6 +4,8 @@
 
 #include "CoreMinimal.h"
 #include "GameFramework/Pawn.h"
+#include "GameFramework/Character.h"
+#include "GenericTeamAgentInterface.h"
 #include "ThistleInject.generated.h"
 
 /*
@@ -54,14 +56,19 @@
 
 
 UCLASS()
-class THISTLERUNTIME_API AThistleInject : public APawn
+class THISTLERUNTIME_API AThistleInject : public ACharacter, public IGenericTeamAgentInterface
 {
 	GENERATED_BODY()
 
 public:
 	// Sets default values for this pawn's properties
 	AThistleInject();
+	virtual FGenericTeamId GetGenericTeamId() const override
+	{
+		return myTeam;
+	};
 
+	FGenericTeamId myTeam = FGenericTeamId(7);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
