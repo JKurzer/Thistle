@@ -6,6 +6,9 @@
 #include "GameFramework/Pawn.h"
 #include "GameFramework/Character.h"
 #include "GenericTeamAgentInterface.h"
+#include "GameFramework/MovementComponent.h"
+//QUICK NOTE: IF YOU DO NOT INCLUDE THIS, CharacterMovementComponents are still visible, just abstract, so you will get a VERY odd error.
+#include "GameFramework/CharacterMovementComponent.h" 
 #include "ThistleInject.generated.h"
 
 /*
@@ -66,6 +69,14 @@ public:
 	virtual FGenericTeamId GetGenericTeamId() const override
 	{
 		return myTeam;
+	};
+	UFUNCTION(BlueprintCallable, Category = "Movement")
+	void UpdateWalkSpeed(float newSpeed) 
+	{
+		if (UCharacterMovementComponent* MovementComp = this->GetCharacterMovement())
+		{
+			MovementComp->MaxWalkSpeed = newSpeed;
+		}
 	};
 
 	FGenericTeamId myTeam = FGenericTeamId(7);
