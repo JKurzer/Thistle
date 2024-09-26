@@ -21,5 +21,19 @@
 			"Type": "Runtime",
 			"LoadingPhase": "PostEngineInit"
 		}
+	], 
+	"Plugins": [
+		{
+			"Name": "Artillery",
+			"Enabled": true
+		},
+		{
+			"Name": "GameplayAbilities",
+			"Enabled": true
+		},
+		{
+			"Name": "SkeletonKey",
+			"Enabled": true
+		}
 	]
 }

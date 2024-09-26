@@ -8,7 +8,14 @@
 #include "GenericTeamAgentInterface.h"
 #include "GameFramework/MovementComponent.h"
 //QUICK NOTE: IF YOU DO NOT INCLUDE THIS, CharacterMovementComponents are still visible, just abstract, so you will get a VERY odd error.
-#include "GameFramework/CharacterMovementComponent.h" 
+#include "GameFramework/CharacterMovementComponent.h"
+#include "ArtilleryRuntime/Public/Systems/ArtilleryDispatch.h"
+#include "ArtilleryRuntime/Public/TIcklites/FTSphereCast.h"
+#include "ArtilleryRuntime/Public/TestTypes/FMockBeamCannon.h"
+#include "GameplayAbilitySpecHandle.h"
+#include "UEnemyMachine.h"
+#include "PhysicsTypes/BarrageAutoBox.h"
+#include "PhysicsTypes/BarragePlayerAgent.h"
 #include "ThistleInject.generated.h"
 
 /*
@@ -66,6 +73,15 @@ class THISTLERUNTIME_API AThistleInject : public ACharacter, public IGenericTeam
 public:
 	// Sets default values for this pawn's properties
 	AThistleInject();
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	UBarragePlayerAgent* BarragePhysicsAgent;
+	
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))	
+	UKeyCarry* LKeyCarry;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Artillery, meta = (AllowPrivateAccess = "true"))
+	UEnemyMachine* ArtilleryStateMachine;
+	
 	virtual FGenericTeamId GetGenericTeamId() const override
 	{
 		return myTeam;
@@ -79,6 +95,20 @@ public:
 		}
 	};
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	FMockBeamCannon Attack;
+
+	UFUNCTION(BlueprintCallable, Category = "Abilities")
+	void FireAttack()
+	{
+		FGameplayAbilitySpecHandle* SpecHandle = new FGameplayAbilitySpecHandle();
+		// SpecHandle->GenerateNewHandle();
+		AActor* self = this;
+		FGameplayAbilityActorInfo* ActorInfo = new FGameplayAbilityActorInfo();
+		FGameplayAbilityActivationInfo ActivationInfo = FGameplayAbilityActivationInfo(self);
+		Attack.PreFireGun(*SpecHandle, ActorInfo, ActivationInfo);
+	}
+	
 	FGenericTeamId myTeam = FGenericTeamId(7);
 protected:
 	// Called when the game starts or when spawned
@@ -90,5 +120,7 @@ public:
 
 	// Called to bind functionality to input
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
+private:
+	ActorKey MyKey;
 
 };

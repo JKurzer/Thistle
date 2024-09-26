@@ -35,7 +35,9 @@ public class ThistleRuntime : ModuleRules
                 "InputCore",
                 "SlateCore",
                 "AIModule",
-
+                "ArtilleryRuntime",
+                "GameplayAbilities",
+				"SkeletonKey",
 				// ... add other public dependencies that you statically link with here ...
 			}
 			);
@@ -52,6 +54,7 @@ public class ThistleRuntime : ModuleRules
                 "InputCore",
                 "SlateCore",
                 "AIModule",
+                "ArtilleryRuntime",
 				// ... add private dependencies that you statically link with here ...	
 			}
 			);
