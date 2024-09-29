@@ -35,6 +35,7 @@ public class ThistleRuntime : ModuleRules
                 "InputCore",
                 "SlateCore",
                 "AIModule",
+                "SkeletonKey",
 
 				// ... add other public dependencies that you statically link with here ...
 			}
