@@ -13,7 +13,7 @@
 //standpoint.
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class THISTLERUNTIME_API UInjectionComponent : public UAUKineManager
+class THISTLERUNTIME_API UInjectionComponent : public USwarmKineManager
 {
 	GENERATED_BODY()
 
