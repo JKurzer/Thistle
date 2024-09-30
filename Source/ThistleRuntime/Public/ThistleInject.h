@@ -74,8 +74,10 @@ public:
 	// Sets default values for this pawn's properties
 	AThistleInject();
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
-	UBarragePlayerAgent* BarragePhysicsAgent;
+	// UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
+	// UBarragePlayerAgent* BarragePhysicsAgent;
+	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Artillery, meta = (AllowPrivateAccess = "true"))
+	UBarrageColliderBase* BarragePhysicsAgent;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))	
 	UKeyCarry* LKeyCarry;

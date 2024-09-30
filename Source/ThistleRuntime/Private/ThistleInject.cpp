@@ -8,13 +8,12 @@
 AThistleInject::AThistleInject()
 {
 	LKeyCarry = CreateDefaultSubobject<UKeyCarry>(TEXT("ActorKeyComponent"));
-	BarragePhysicsAgent = CreateDefaultSubobject<UBarragePlayerAgent>(TEXT("Barrage Physics Agent"));
-	ArtilleryStateMachine = CreateDefaultSubobject<UEnemyMachine>(TEXT("Artillery Enemy Machine"));
-	
 	LKeyCarry->AttemptRegister();
-	auto CapRef = GetCapsuleComponent();
-    BarragePhysicsAgent->extent = CapRef->GetScaledCapsuleHalfHeight() * 1.01;
-    BarragePhysicsAgent->radius = CapRef->GetScaledCapsuleRadius() * 1.01;
+	BarragePhysicsAgent = CreateDefaultSubobject<UBarrageAutoBox>(TEXT("Barrage Physics Agent"));
+	ArtilleryStateMachine = CreateDefaultSubobject<UEnemyMachine>(TEXT("Artillery Enemy Machine"));
+	// auto CapRef = GetCapsuleComponent();
+    // BarragePhysicsAgent->extent = CapRef->GetScaledCapsuleHalfHeight() * 1.01;
+    // BarragePhysicsAgent->radius = CapRef->GetScaledCapsuleRadius() * 1.01;
 }
 
 // Called when the game starts or when spawned
@@ -31,7 +30,7 @@ void AThistleInject::BeginPlay()
 		MyAttributes.Add(MAX_MANA, 1000);
 		MyAttributes.Add(Attr::ManaRechargePerTick, 10);
 		MyKey = ArtilleryStateMachine->CompleteRegistrationByActorParent(MyAttributes);
-		ArtilleryStateMachine->MyDispatch->GENERATE_RECHARGE(MyKey);
+		// ArtilleryStateMachine->MyDispatch->GENERATE_RECHARGE(MyKey);
 	}
 }
 
