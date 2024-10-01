@@ -3,6 +3,7 @@
 #pragma once
 
 #include "CoreMinimal.h"
+#include "SwarmKine.h"
 #include "Components/ActorComponent.h"
 #include "InjectionComponent.generated.h"
 
@@ -12,7 +13,7 @@
 //standpoint.
 
 UCLASS( ClassGroup=(Custom), meta=(BlueprintSpawnableComponent) )
-class THISTLERUNTIME_API UInjectionComponent : public UActorComponent
+class THISTLERUNTIME_API UInjectionComponent : public USwarmKineManager
 {
 	GENERATED_BODY()
 
