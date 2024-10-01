@@ -11,10 +11,11 @@ AThistleInject::AThistleInject()
 	LKeyCarry->AttemptRegister();
 	BarragePhysicsAgent = CreateDefaultSubobject<UBarrageAutoBox>(TEXT("Barrage Physics Agent"));
 	ArtilleryStateMachine = CreateDefaultSubobject<UEnemyMachine>(TEXT("Artillery Enemy Machine"));
-	// auto CapRef = GetCapsuleComponent();
-    // BarragePhysicsAgent->extent = CapRef->GetScaledCapsuleHalfHeight() * 1.01;
-    // BarragePhysicsAgent->radius = CapRef->GetScaledCapsuleRadius() * 1.01;
+	
 }
+
+// grab FBLet (fiblet) and apply force to it
+// UBarragePrimitive Apply Force
 
 // Called when the game starts or when spawned
 void AThistleInject::BeginPlay()
@@ -32,13 +33,13 @@ void AThistleInject::BeginPlay()
 		MyKey = ArtilleryStateMachine->CompleteRegistrationByActorParent(MyAttributes);
 		// ArtilleryStateMachine->MyDispatch->GENERATE_RECHARGE(MyKey);
 	}
+	AddForce(FVector3f(0, 1200.0, 0));
 }
 
 // Called every frame
 void AThistleInject::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
-
 }
 
 // Called to bind functionality to input

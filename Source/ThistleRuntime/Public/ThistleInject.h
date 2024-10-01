@@ -15,7 +15,7 @@
 #include "GameplayAbilitySpecHandle.h"
 #include "UEnemyMachine.h"
 #include "PhysicsTypes/BarrageAutoBox.h"
-#include "PhysicsTypes/BarragePlayerAgent.h"
+#include "FBarragePrimitive.h"
 #include "ThistleInject.generated.h"
 
 /*
@@ -77,7 +77,7 @@ public:
 	// UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))
 	// UBarragePlayerAgent* BarragePhysicsAgent;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category=Artillery, meta = (AllowPrivateAccess = "true"))
-	UBarrageColliderBase* BarragePhysicsAgent;
+	UBarrageAutoBox* BarragePhysicsAgent;
 	
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Camera, meta = (AllowPrivateAccess = "true"))	
 	UKeyCarry* LKeyCarry;
@@ -110,7 +110,13 @@ public:
 		FGameplayAbilityActivationInfo ActivationInfo = FGameplayAbilityActivationInfo(self);
 		Attack.PreFireGun(*SpecHandle, ActorInfo, ActivationInfo);
 	}
-	
+
+	UFUNCTION(BlueprintCallable, Category = "Movement")
+	void AddForce(FVector3f Force)
+	{
+		UE_LOG(LogTemp, Display, TEXT("AddForce Called"));
+		BarragePhysicsAgent->ApplyOneTickOfForce(FVector3d(Force.X, Force.Y, Force.Z));		
+	}
 	FGenericTeamId myTeam = FGenericTeamId(7);
 protected:
 	// Called when the game starts or when spawned
@@ -124,5 +130,6 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 private:
 	ActorKey MyKey;
-
 };
+
+
