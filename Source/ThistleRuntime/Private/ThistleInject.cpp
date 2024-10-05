@@ -23,6 +23,8 @@ void AThistleInject::BeginPlay()
 	Super::BeginPlay();
 	if(!IsDefaultSubobject())
 	{
+		FArtilleryRunLocomotionFromDispatch Inbound;
+		Inbound.BindUObject(this, &AThistleInject::LocomotionStateMachine);
 		TMap<AttribKey, double> MyAttributes = TMap<AttribKey, double>();
 		MyAttributes.Add(HEALTH, 1000);
 		MyAttributes.Add(MAX_HEALTH, 1000);
@@ -33,16 +35,20 @@ void AThistleInject::BeginPlay()
 		MyKey = ArtilleryStateMachine->CompleteRegistrationByActorParent(MyAttributes);
 		// ArtilleryStateMachine->MyDispatch->GENERATE_RECHARGE(MyKey);
 	}
-<<<<<<< Updated upstream
-	AddForce(FVector3f(0, 1200.0, 0));
-=======
-	// AddForce(FVector3f(1200000000, 0, 1200000000));
->>>>>>> Stashed changes
+	
+}
+
+bool AThistleInject::LocomotionStateMachine(FArtilleryShell PriorMovement, FArtilleryShell Movement,
+	bool RunAtLeastOnce, bool Smear)
+{
+	MoveToPoint(FVector3f(-5050.0, 2340.0, 30.0));
+	return true;
 }
 
 // Called every frame
 void AThistleInject::Tick(float DeltaTime)
 {
+	// AddForce(FVector3f(0, 1, 0)*10000000);
 	Super::Tick(DeltaTime);
 }
 

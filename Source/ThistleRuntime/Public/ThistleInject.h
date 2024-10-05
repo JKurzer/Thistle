@@ -83,6 +83,9 @@ public:
 	UKeyCarry* LKeyCarry;
 	UPROPERTY(VisibleAnywhere, BlueprintReadOnly, Category = Artillery, meta = (AllowPrivateAccess = "true"))
 	UEnemyMachine* ArtilleryStateMachine;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = Barrage)
+	bool disableZAxis = true;
 	
 	virtual FGenericTeamId GetGenericTeamId() const override
 	{
@@ -114,14 +117,33 @@ public:
 	UFUNCTION(BlueprintCallable, Category = "Movement")
 	void AddForce(FVector3f Force)
 	{
-		UE_LOG(LogTemp, Display, TEXT("AddForce Called"));
-		BarragePhysicsAgent->ApplyOneTickOfForce(FVector3d(Force.X, Force.Y, Force.Z));		
+		// UE_LOG(LogTemp, Display, TEXT("AddForce Called: (%f, %f, %f)"), Force.X, Force.Y, disableZAxis ? 0 : Force.Z);
+		FVector3f velocity =  FBarragePrimitive::GetVelocity(BarragePhysicsAgent->MyBarrageBody);
+		UE_LOG(LogTemp, Display, TEXT("AddForce Called: (%f, %f, %f)"), velocity.X, velocity.Y, velocity.Z);
+		if (disableZAxis)
+			FBarragePrimitive::ApplyForce(FVector3d(Force.X, Force.Y, 0), BarragePhysicsAgent->MyBarrageBody);
+		else
+			FBarragePrimitive::ApplyForce(FVector3d(Force.X, Force.Y, Force.Z), BarragePhysicsAgent->MyBarrageBody);		
+	}
+	UFUNCTION(BlueprintCallable, Category = "Movement")
+	bool MoveToPoint(FVector3f Point)
+	{
+		// moves the actor towards a specified point , and returns true or false based on how close the actor is to Point
+		FVector3f MovementVector = Point - FVector3f(GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z);
+		MovementVector.Normalize();
+		if (GetActorLocation().Equals(FVector3d(Point.X, Point.Y, Point.Z), 5))
+		{
+			return true;
+		}
+		AddForce(MovementVector*100000000);
+		return false;
 	}
 	FGenericTeamId myTeam = FGenericTeamId(7);
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
+	// runs physics calls
+	bool LocomotionStateMachine( FArtilleryShell PriorMovement, FArtilleryShell Movement, bool RunAtLeastOnce, bool Smear);
 public:	
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
