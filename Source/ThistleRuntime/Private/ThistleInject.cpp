@@ -33,7 +33,11 @@ void AThistleInject::BeginPlay()
 		MyKey = ArtilleryStateMachine->CompleteRegistrationByActorParent(MyAttributes);
 		// ArtilleryStateMachine->MyDispatch->GENERATE_RECHARGE(MyKey);
 	}
+<<<<<<< Updated upstream
 	AddForce(FVector3f(0, 1200.0, 0));
+=======
+	// AddForce(FVector3f(1200000000, 0, 1200000000));
+>>>>>>> Stashed changes
 }
 
 // Called every frame
