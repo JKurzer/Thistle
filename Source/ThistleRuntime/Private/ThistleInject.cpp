@@ -41,7 +41,7 @@ void AThistleInject::BeginPlay()
 bool AThistleInject::LocomotionStateMachine(FArtilleryShell PriorMovement, FArtilleryShell Movement,
 	bool RunAtLeastOnce, bool Smear)
 {
-	MoveToPoint(FVector3f(-5050.0, 2340.0, 30.0));
+	// MoveToPoint(FVector3f(-5050.0, 2340.0, 30.0));
 	return true;
 }
 

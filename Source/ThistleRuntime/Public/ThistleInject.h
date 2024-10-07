@@ -131,7 +131,7 @@ public:
 		// moves the actor towards a specified point , and returns true or false based on how close the actor is to Point
 		FVector3f MovementVector = Point - FVector3f(GetActorLocation().X, GetActorLocation().Y, GetActorLocation().Z);
 		MovementVector.Normalize();
-		if (GetActorLocation().Equals(FVector3d(Point.X, Point.Y, Point.Z), 5))
+		if (GetActorLocation().Equals(FVector3d(Point.X, Point.Y, Point.Z), 50))
 		{
 			return true;
 		}
