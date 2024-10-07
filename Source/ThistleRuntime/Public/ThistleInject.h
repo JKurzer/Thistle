@@ -12,6 +12,7 @@
 #include "ArtilleryRuntime/Public/Systems/ArtilleryDispatch.h"
 #include "ArtilleryRuntime/Public/TIcklites/FTSphereCast.h"
 #include "ArtilleryRuntime/Public/TestTypes/FMockBeamCannon.h"
+#include "FMockArtilleryGun.h"
 #include "GameplayAbilitySpecHandle.h"
 #include "UEnemyMachine.h"
 #include "PhysicsTypes/BarrageAutoBox.h"
@@ -101,7 +102,7 @@ public:
 	};
 
 	UPROPERTY(EditAnywhere, BlueprintReadWrite)
-	FMockBeamCannon Attack;
+	FMockArtilleryGun Attack;
 
 	UFUNCTION(BlueprintCallable, Category = "Abilities")
 	void FireAttack()
